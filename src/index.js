@@ -6,6 +6,7 @@ const authRoutes = require("./routes/authRoutes");
 const trackRoutes = require("./routes/trackRoutes");
 const bodyParser = require("body-parser");
 const requireAuth = require("./middlewares/requireAuth");
+require("dotenv").config();
 
 const app = express();
 
@@ -13,8 +14,7 @@ app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(trackRoutes);
 
-const mongoUri =
-  "mongodb+srv://admin:Ferrari2004@cluster0.tqxxtf6.mongodb.net/?retryWrites=true&w=majority";
+const mongoUri = process.env.MONGO_URL;
 
 mongoose.connect(mongoUri);
 
